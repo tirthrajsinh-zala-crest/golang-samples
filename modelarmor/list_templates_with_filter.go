@@ -14,11 +14,12 @@
 
 // Sample code for listing model armor templates with filters.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 	"strings"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
@@ -28,14 +29,9 @@ import (
 )
 
 // listModelArmorTemplatesWithFilter lists all model armor templates in the specified project and location with a filter.
-func listModelArmorTemplatesWithFilter(projectID, locationID, templateID string) ([]string, error) {
+func listModelArmorTemplatesWithFilter(w io.Writer, projectID, locationID, templateID string) ([]string, error) {
 	// [START modelarmor_list_templates_with_filter]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// locationID := "us-central1"
-	// templateID := "template_id"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -69,8 +65,8 @@ func listModelArmorTemplatesWithFilter(projectID, locationID, templateID string)
 		templateNames = append(templateNames, template.Name)
 	}
 
-	// Print templates name
-	fmt.Printf("Templates Found: %s\n", strings.Join(templateNames, ", "))
+	// Print templates name using fmt.Fprintf with the io.Writer
+	fmt.Fprintf(w, "Templates Found: %s\n", strings.Join(templateNames, ", "))
 	// [END modelarmor_list_templates_with_filter]
 
 	return templateNames, nil

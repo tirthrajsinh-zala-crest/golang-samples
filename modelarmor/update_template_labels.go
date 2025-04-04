@@ -14,11 +14,12 @@
 
 // Sample code for updating the labels of the given model armor template.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -27,7 +28,7 @@ import (
 )
 
 // updateModelArmorTemplateLabels updates the labels of the given model armor template.
-func updateModelArmorTemplateLabels(projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
+func updateModelArmorTemplateLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_update_template_with_labels]
 	ctx := context.Background()
 
@@ -64,7 +65,7 @@ func updateModelArmorTemplateLabels(projectID, locationID, templateID string, la
 		return nil, fmt.Errorf("failed to update template: %v", err)
 	}
 
-	fmt.Printf("Updated Model Armor Template: %s\n", response.Name)
+	fmt.Fprintf(w, "Updated Model Armor Template: %s\n", response.Name)
 
 	// [END modelarmor_update_template_with_labels]
 

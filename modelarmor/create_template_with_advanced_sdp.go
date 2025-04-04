@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,12 @@
 
 // Sample code for creating a new model armor template with advanced SDP settings enabled.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // createModelArmorTemplateWithAdvancedSDP creates a new Model Armor template with advanced SDP settings enabled.
-func createModelArmorTemplateWithAdvancedSDP(projectID, locationID, templateID, inspectTemplate, deidentifyTemplate string) (*modelarmorpb.Template, error) {
+func createModelArmorTemplateWithAdvancedSDP(w io.Writer, projectID, locationID, templateID, inspectTemplate, deidentifyTemplate string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_create_template_with_advanced_sdp]
 	ctx := context.Background()
 
@@ -88,8 +89,8 @@ func createModelArmorTemplateWithAdvancedSDP(projectID, locationID, templateID, 
 		return nil, fmt.Errorf("failed to create template: %v", err)
 	}
 
-	// Print the new template name.
-	fmt.Printf("Created template: %s\n", response.Name)
+	// Print the new template name using fmt.Fprint with the io.Writer.
+	fmt.Fprintf(w, "Created template: %s\n", response.Name)
 
 	// [END modelarmor_create_template_with_advanced_sdp]
 

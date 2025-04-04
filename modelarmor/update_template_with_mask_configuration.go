@@ -14,11 +14,12 @@
 
 // Sample code for updating the model armor template with update mask.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -27,7 +28,7 @@ import (
 )
 
 // updateModelArmorTemplateWithMaskConfiguration updates an existing model armor template.
-func updateModelArmorTemplateWithMaskConfiguration(projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
+func updateModelArmorTemplateWithMaskConfiguration(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_update_template_with_mask_configuration]
 	ctx := context.Background()
 
@@ -99,7 +100,7 @@ func updateModelArmorTemplateWithMaskConfiguration(projectID, locationID, templa
 		return nil, fmt.Errorf("failed to update template: %v", err)
 	}
 
-	fmt.Printf("Updated Model Armor Template: %s\n", response.Name)
+	fmt.Fprintf(w, "Updated Model Armor Template: %s\n", response.Name)
 
 	// [END modelarmor_update_template_with_mask_configuration]
 

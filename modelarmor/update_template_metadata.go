@@ -14,11 +14,12 @@
 
 // Sample code for updating the model armor template metadata.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // updateModelArmorTemplateMetadata updates an existing model armor template.
-func updateModelArmorTemplateMetadata(projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
+func updateModelArmorTemplateMetadata(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_update_template_metadata]
 	ctx := context.Background()
 
@@ -96,7 +97,7 @@ func updateModelArmorTemplateMetadata(projectID, locationID, templateID string) 
 		return nil, fmt.Errorf("failed to update template: %v", err)
 	}
 
-	fmt.Printf("Updated Model Armor Template: %s\n", response.Name)
+	fmt.Fprintf(w, "Updated Model Armor Template: %s\n", response.Name)
 
 	// [END modelarmor_update_template_metadata]
 

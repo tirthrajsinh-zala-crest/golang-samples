@@ -14,11 +14,12 @@
 
 // Sample code for getting a model armor template.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,14 +27,9 @@ import (
 )
 
 // getModelArmorTemplate gets a Model Armor template.
-func getModelArmorTemplate(projectID, location, templateID string) (*modelarmorpb.Template, error) {
+func getModelArmorTemplate(w io.Writer, projectID, location, templateID string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_get_template]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// location := "us-central1"
-	// templateID := "template_id"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -55,8 +51,8 @@ func getModelArmorTemplate(projectID, location, templateID string) (*modelarmorp
 		return nil, fmt.Errorf("failed to get template: %v", err)
 	}
 
-	// Print the template name.
-	fmt.Printf("Retrieved template: %s\n", response.Name)
+	// Print the template name using fmt.Fprintf with the io.Writer.
+	fmt.Fprintf(w, "Retrieved template: %s\n", response.Name)
 
 	// [END modelarmor_get_template]
 

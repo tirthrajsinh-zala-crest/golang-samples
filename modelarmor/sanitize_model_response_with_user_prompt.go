@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Sample code for sanitizing a model response using model armor along with user prompt.
+// Sample code for sanitizing a model response using the model armor.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,16 +27,9 @@ import (
 )
 
 // sanitizeModelResponseWithUserPrompt sanitizes a model response using the Model Armor API.
-func sanitizeModelResponseWithUserPrompt(projectID, locationID, templateID, modelResponse, userPrompt string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
+func sanitizeModelResponseWithUserPrompt(w io.Writer, projectID, locationID, templateID, modelResponse, userPrompt string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
 	// [START modelarmor_sanitize_model_response_with_user_prompt]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// locationID := "us-central1"
-	// templateID := "template_id"
-	// modelResponse := "The model response data to sanitize"
-	// userPrompt := "The user prompt to pass with model response"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -60,14 +54,13 @@ func sanitizeModelResponseWithUserPrompt(projectID, locationID, templateID, mode
 		UserPrompt:        userPrompt,
 	}
 
-	// Sanitize the model response.
+	// Call the API to sanitize the model response.
 	response, err := client.SanitizeModelResponse(ctx, req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to sanitize model response: %v", err)
 	}
 
-	// Sanitization Result.
-	fmt.Printf("Sanitization Result: %v\n", response)
+	fmt.Fprintf(w, "Sanitized response: %s\n", response)
 
 	// [END modelarmor_sanitize_model_response_with_user_prompt]
 

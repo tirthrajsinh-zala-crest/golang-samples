@@ -14,11 +14,12 @@
 
 // Sample code for sanitizing user prompt with model armor.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,15 +27,9 @@ import (
 )
 
 // sanitizeUserPrompt sanitizes a user prompt using the Model Armor API.
-func sanitizeUserPrompt(projectID, locationID, templateID, userPrompt string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
+func sanitizeUserPrompt(w io.Writer, projectID, locationID, templateID, userPrompt string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
 	// [START modelarmor_sanitize_user_prompt]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// locationID := "us-central1"
-	// templateID := "template_id"
-	// userPrompt := "Prompt entered by the user"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -52,7 +47,7 @@ func sanitizeUserPrompt(projectID, locationID, templateID, userPrompt string) (*
 		},
 	}
 
-	// Prepare request for sanitizing the defined prompt.
+	// Prepare request for sanitizing user prompt.
 	req := &modelarmorpb.SanitizeUserPromptRequest{
 		Name:           fmt.Sprintf("projects/%s/locations/%s/templates/%s", projectID, locationID, templateID),
 		UserPromptData: userPromptData,
@@ -65,7 +60,7 @@ func sanitizeUserPrompt(projectID, locationID, templateID, userPrompt string) (*
 	}
 
 	// Sanitization Result.
-	fmt.Printf("Sanitization Result: %v\n", response)
+	fmt.Fprintf(w, "Sanitization Result: %v\n", response)
 
 	// [END modelarmor_sanitize_user_prompt]
 

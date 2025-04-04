@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,12 @@
 
 // Sample code for creating a new model armor template with labels.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // createModelArmorTemplateWithLabels creates a new Model Armor template with labels.
-func createModelArmorTemplateWithLabels(projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
+func createModelArmorTemplateWithLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_create_template_with_labels]
 	ctx := context.Background()
 
@@ -43,7 +44,7 @@ func createModelArmorTemplateWithLabels(projectID, locationID, templateID string
 
 	// Build the Model Armor template with your preferred filters.
 	// For more details on filters, please refer to the following doc:
-	// https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters
+	// [https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters)
 	template := &modelarmorpb.Template{
 		FilterConfig: &modelarmorpb.FilterConfig{
 			RaiSettings: &modelarmorpb.RaiFilterSettings{
@@ -75,8 +76,8 @@ func createModelArmorTemplateWithLabels(projectID, locationID, templateID string
 		return nil, fmt.Errorf("failed to create template: %v", err)
 	}
 
-	// Print the new template name.
-	fmt.Printf("Created template: %s\n", response.Name)
+	// Print the new template name using fmt.Fprintf with the io.Writer.
+	fmt.Fprintf(w, "Created template: %s\n", response.Name)
 
 	// [END modelarmor_create_template_with_labels]
 

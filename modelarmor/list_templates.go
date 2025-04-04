@@ -14,11 +14,12 @@
 
 // Sample code for getting list of model armor templates.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -27,13 +28,9 @@ import (
 )
 
 // listModelArmorTemplates lists Model Armor templates.
-func listModelArmorTemplates(projectID, location string) ([]*modelarmorpb.Template, error) {
+func listModelArmorTemplates(w io.Writer, projectID, location string) ([]*modelarmorpb.Template, error) {
 	// [START modelarmor_list_templates]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// location := "us-central1"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -62,7 +59,7 @@ func listModelArmorTemplates(projectID, location string) ([]*modelarmorpb.Templa
 			return nil, fmt.Errorf("failed to iterate templates: %v", err)
 		}
 		templates = append(templates, template)
-		fmt.Println(template.Name)
+		fmt.Fprintf(w, "Template: %s\n", template.Name)
 	}
 
 	// [END modelarmor_list_templates]

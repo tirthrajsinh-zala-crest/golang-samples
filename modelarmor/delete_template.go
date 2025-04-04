@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,12 @@
 
 // Sample code for deleting a model armor template.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // deleteModelArmorTemplate deletes a Model Armor template.
-func deleteModelArmorTemplate(projectID, location, templateID string) error {
+func deleteModelArmorTemplate(w io.Writer, projectID, location, templateID string) error {
 	// [START modelarmor_delete_template]
 	ctx := context.Background()
 
@@ -49,7 +50,8 @@ func deleteModelArmorTemplate(projectID, location, templateID string) error {
 		return fmt.Errorf("failed to delete template: %v", err)
 	}
 
-	fmt.Printf("Successfully deleted Model Armor template: %s\n", req.Name)
+	// Print the success message using fmt.Fprintf with the io.Writer.
+	fmt.Fprintf(w, "Successfully deleted Model Armor template: %s\n", req.Name)
 	// [END modelarmor_delete_template]
 
 	return nil

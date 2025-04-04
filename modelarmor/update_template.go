@@ -14,11 +14,12 @@
 
 // Sample code for updating the model armor template.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // updateModelArmorTemplate updates the Model Armor template.
-func updateModelArmorTemplate(projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
+func updateModelArmorTemplate(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_update_template]
 	ctx := context.Background()
 
@@ -67,7 +68,7 @@ func updateModelArmorTemplate(projectID, locationID, templateID string) (*modela
 	}
 
 	// Print the updated filters in the template.
-	fmt.Printf("Updated Filter Config: %+v\n", response.FilterConfig)
+	fmt.Fprintf(w, "Updated Filter Config: %+v\n", response.FilterConfig)
 
 	// [END modelarmor_update_template]
 

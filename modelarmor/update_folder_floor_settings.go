@@ -14,11 +14,12 @@
 
 // Sample code for updating the model armor folder settings of a folder.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // updateFolderFloorSettings updates floor settings of a folder.
-func updateFolderFloorSettings(folderID, locationID string) (*modelarmorpb.FloorSetting, error) {
+func updateFolderFloorSettings(w io.Writer, folderID, locationID string) (*modelarmorpb.FloorSetting, error) {
 	// [START modelarmor_update_folder_floor_settings]
 	ctx := context.Background()
 
@@ -75,7 +76,7 @@ func updateFolderFloorSettings(folderID, locationID string) (*modelarmorpb.Floor
 	}
 
 	// Print the updated config
-	fmt.Printf("Updated Floor Setting: %v\n", response)
+	fmt.Fprintf(w, "Updated Floor Setting: %v\n", response)
 
 	// [END modelarmor_update_folder_floor_settings]
 

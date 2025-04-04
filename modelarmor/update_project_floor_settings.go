@@ -14,11 +14,12 @@
 
 // Sample code for updating the model armor project floor settings.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // updateProjectFloorSettings updates the floor settings of a project.
-func updateProjectFloorSettings(projectID, locationID string) (*modelarmorpb.FloorSetting, error) {
+func updateProjectFloorSettings(w io.Writer, projectID, locationID string) (*modelarmorpb.FloorSetting, error) {
 	// [START modelarmor_update_project_floor_settings]
 	ctx := context.Background()
 
@@ -69,7 +70,7 @@ func updateProjectFloorSettings(projectID, locationID string) (*modelarmorpb.Flo
 	}
 
 	// Print the updated config
-	fmt.Printf("Updated Floor Setting: %+v\n", response)
+	fmt.Fprintf(w, "Updated Floor Setting: %+v\n", response)
 
 	// [END modelarmor_update_project_floor_settings]
 

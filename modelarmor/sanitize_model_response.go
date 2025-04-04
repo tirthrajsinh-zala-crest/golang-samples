@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Sample code for sanitizing a model response using the model armor.
+// Sample code for sanitizing a model response using model armor along with user prompt.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,15 +27,9 @@ import (
 )
 
 // sanitizeModelResponse sanitizes a model response using the Model Armor API.
-func sanitizeModelResponse(projectID, locationID, templateID, modelResponse string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
+func sanitizeModelResponse(w io.Writer, projectID, locationID, templateID, modelResponse string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
 	// [START modelarmor_sanitize_model_response]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// locationID := "us-central1"
-	// templateID := "template_id"
-	// modelResponse := "The model response data to sanitize"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -65,7 +60,7 @@ func sanitizeModelResponse(projectID, locationID, templateID, modelResponse stri
 	}
 
 	// Sanitization Result.
-	fmt.Printf("Sanitization Result: %v\n", response)
+	fmt.Fprintf(w, "Sanitization Result: %v\n", response)
 
 	// [END modelarmor_sanitize_model_response]
 

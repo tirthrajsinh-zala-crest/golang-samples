@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,12 @@
 
 // Sample code for creating a new model armor template with template metadata.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,7 +27,7 @@ import (
 )
 
 // createModelArmorTemplateWithMetadata creates a new Model Armor template with template metadata.
-func createModelArmorTemplateWithMetadata(projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
+func createModelArmorTemplateWithMetadata(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	// [START modelarmor_create_template_with_metadata]
 	ctx := context.Background()
 
@@ -43,7 +44,7 @@ func createModelArmorTemplateWithMetadata(projectID, locationID, templateID stri
 
 	// Build the Model Armor template with your preferred filters.
 	// For more details on filters, please refer to the following doc:
-	// https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters
+	// [https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-filters)
 	template := &modelarmorpb.Template{
 		FilterConfig: &modelarmorpb.FilterConfig{
 			RaiSettings: &modelarmorpb.RaiFilterSettings{
@@ -61,7 +62,7 @@ func createModelArmorTemplateWithMetadata(projectID, locationID, templateID stri
 		},
 		// Add template metadata to the template.
 		// For more details on template metadata, please refer to the following doc:
-		// https://cloud.google.com/security-command-center/docs/reference/model-armor/rest/v1/projects.locations.templates#templatemetadata
+		// [https://cloud.google.com/security-command-center/docs/reference/model-armor/rest/v1/projects.locations.templates#templatemetadata](https://cloud.google.com/security-command-center/docs/reference/model-armor/rest/v1/projects.locations.templates#templatemetadata)
 		TemplateMetadata: &modelarmorpb.Template_TemplateMetadata{
 			IgnorePartialInvocationFailures: true,
 			LogSanitizeOperations:           true,
@@ -81,7 +82,9 @@ func createModelArmorTemplateWithMetadata(projectID, locationID, templateID stri
 		return nil, fmt.Errorf("failed to create template: %v", err)
 	}
 
-	fmt.Printf("Created Model Armor Template: %s\n", response.Name)
+	// Print the new template name using fmt.Fprintf with the io.Writer.
+	fmt.Fprintf(w, "Created Model Armor Template: %s\n", response.Name)
+
 	// [END modelarmor_create_template_with_metadata]
 
 	return response, nil

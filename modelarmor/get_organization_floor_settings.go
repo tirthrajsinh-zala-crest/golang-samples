@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,18 +14,19 @@
 
 // Sample code for getting floor settings of an organization.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
 )
 
 // getOrganizationFloorSettings gets details of a single floor setting of an organization.
-func getOrganizationFloorSettings(organizationID string) (*modelarmorpb.FloorSetting, error) {
+func getOrganizationFloorSettings(w io.Writer, organizationID string) (*modelarmorpb.FloorSetting, error) {
 	// [START modelarmor_get_organization_floor_settings]
 	ctx := context.Background()
 
@@ -48,8 +49,8 @@ func getOrganizationFloorSettings(organizationID string) (*modelarmorpb.FloorSet
 		return nil, fmt.Errorf("failed to get floor setting: %v", err)
 	}
 
-	// Print the retrieved floor setting.
-	fmt.Printf("Retrieved floor setting: %v\n", response)
+	// Print the retrieved floor setting using fmt.Fprintf with the io.Writer.
+	fmt.Fprintf(w, "Retrieved floor setting: %v\n", response)
 
 	// [END modelarmor_get_organization_floor_settings]
 

@@ -14,11 +14,12 @@
 
 // Sample code for scanning a PDF file content using model armor.
 
-package main
+package modelarmor
 
 import (
 	"context"
 	"fmt"
+	"io"
 
 	modelarmor "cloud.google.com/go/modelarmor/apiv1"
 	modelarmorpb "cloud.google.com/go/modelarmor/apiv1/modelarmorpb"
@@ -26,15 +27,9 @@ import (
 )
 
 // screenPDFFile sanitizes/screens PDF text content using the Model Armor API.
-func screenPDFFile(projectID, locationID, templateID, pdfContentBase64 string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
+func screenPDFFile(w io.Writer, projectID, locationID, templateID, pdfContentBase64 string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
 	// [START modelarmor_screen_pdf_file]
 	ctx := context.Background()
-
-	// TODO(Developer): Uncomment and set these variables.
-	// projectID := "YOUR_PROJECT_ID"
-	// locationID := "us-central1"
-	// templateID := "template_id"
-	// pdfContentBase64 := "PDF data in base64 format"
 
 	// Create the Model Armor client.
 	client, err := modelarmor.NewClient(ctx,
@@ -68,7 +63,7 @@ func screenPDFFile(projectID, locationID, templateID, pdfContentBase64 string) (
 	}
 
 	// Sanitization Result.
-	fmt.Printf("Sanitization Result: %v\n", response)
+	fmt.Fprintf(w, "Sanitization Result: %v\n", response)
 
 	// [END modelarmor_screen_pdf_file]
 
