@@ -104,7 +104,7 @@ func testSDPTemplate(t *testing.T, projectID string, locationID string) (string,
 		{Name: "US_INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER"},
 	}
 
-	Create the DLP client.
+	// Create the DLP client.
 	ctx := context.Background()
 	fmt.Println("Before Client")
 	dlpClient, err := dlp.NewClient(ctx, option.WithEndpoint(apiEndpoint))
@@ -587,7 +587,7 @@ func TestUpdateOrganizationFloorSettings(t *testing.T) {
 	if err != nil {
 		t.fatal(err)
 	}
-	
+
 	organizationID := os.Getenv("GOLANG_SAMPLES_ORGANIZATION_ID")
 	var b bytes.Buffer
 	if _, err := updateOrganizationFloorSettings(&b, organizationID, "us-central1"); err != nil {
