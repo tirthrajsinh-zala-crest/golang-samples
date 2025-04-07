@@ -29,7 +29,34 @@ import (
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
-// updateModelArmorTemplateWithMaskConfiguration updates an existing model armor template.
+// updateModelArmorTemplateWithMaskConfiguration updates a Model Armor template with mask configuration.
+//
+// This method updates a Model Armor template with mask configuration.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The updated template with mask configuration.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedTemplate, err := updateModelArmorTemplateWithMaskConfiguration(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedTemplate)
 func updateModelArmorTemplateWithMaskConfiguration(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

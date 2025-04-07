@@ -28,6 +28,29 @@ import (
 )
 
 // getProjectFloorSettings gets details of a single floor setting of a project.
+//
+// This method retrieves the details of a single floor setting of a project.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The retrieved floor setting details.
+//	error: Any error that occurred during retrieval.
+//
+// Example:
+//
+//	floorSetting, err := getProjectFloorSettings(
+//	    os.Stdout,
+//	    "my-project",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(floorSetting)
 func getProjectFloorSettings(w io.Writer, projectID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()
 

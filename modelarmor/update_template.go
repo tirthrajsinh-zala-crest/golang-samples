@@ -28,7 +28,34 @@ import (
 	"google.golang.org/api/option"
 )
 
-// updateModelArmorTemplate updates the Model Armor template.
+// updateModelArmorTemplate updates a Model Armor template.
+//
+// This method updates a Model Armor template.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The updated template.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedTemplate, err := updateModelArmorTemplate(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedTemplate)
 func updateModelArmorTemplate(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

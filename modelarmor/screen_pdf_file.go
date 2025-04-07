@@ -28,7 +28,36 @@ import (
 	"google.golang.org/api/option"
 )
 
-// screenPDFFile sanitizes/screens PDF text content using the Model Armor API.
+// screenPDFFile screens a PDF file.
+//
+// This method screens a PDF file based on the project, location, and template settings.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//	pdfContentBase64 string: The base64-encoded content of the PDF file.
+//
+// Returns:
+//
+//	*modelarmorpb.SanitizeUserPromptResponse: The response from screening the PDF file.
+//	error: Any error that occurred during screening.
+//
+// Example:
+//
+//	response, err := screenPDFFile(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	    "base64-encoded-pdf-content",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(response)
 func screenPDFFile(w io.Writer, projectID, locationID, templateID, pdfContentBase64 string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
 	ctx := context.Background()
 

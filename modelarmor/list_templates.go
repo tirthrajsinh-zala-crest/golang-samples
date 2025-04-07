@@ -30,6 +30,33 @@ import (
 )
 
 // listModelArmorTemplates lists Model Armor templates.
+//
+// This method lists Model Armor templates for a project and location.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	location string: The location of the templates.
+//
+// Returns:
+//
+//	[]*modelarmorpb.Template: A list of Model Armor templates.
+//	error: Any error that occurred during retrieval.
+//
+// Example:
+//
+//	templates, err := listModelArmorTemplates(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, template := range templates {
+//	    fmt.Println(template)
+//	}
 func listModelArmorTemplates(w io.Writer, projectID, location string) ([]*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

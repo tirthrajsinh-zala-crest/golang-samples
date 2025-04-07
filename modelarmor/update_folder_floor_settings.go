@@ -29,6 +29,31 @@ import (
 )
 
 // updateFolderFloorSettings updates floor settings of a folder.
+//
+// This method updates the floor settings of a folder.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	folderID string: The ID of the folder.
+//	locationID string: The ID of the location.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The updated floor settings.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedSettings, err := updateFolderFloorSettings(
+//	    os.Stdout,
+//	    "my-folder",
+//	    "my-location",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedSettings)
 func updateFolderFloorSettings(w io.Writer, folderID, locationID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()
 

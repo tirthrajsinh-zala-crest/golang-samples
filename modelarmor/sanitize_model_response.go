@@ -28,7 +28,36 @@ import (
 	"google.golang.org/api/option"
 )
 
-// sanitizeModelResponse sanitizes a model response using the Model Armor API.
+// sanitizeModelResponse sanitizes a model response.
+//
+// This method sanitizes a model response based on the project, location, and template settings.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//	modelResponse string: The model response to sanitize.
+//
+// Returns:
+//
+//	*modelarmorpb.SanitizeModelResponseResponse: The sanitized model response.
+//	error: Any error that occurred during sanitization.
+//
+// Example:
+//
+//	sanitizedResponse, err := sanitizeModelResponse(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	    "model response",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(sanitizedResponse)
 func sanitizeModelResponse(w io.Writer, projectID, locationID, templateID, modelResponse string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
 	ctx := context.Background()
 

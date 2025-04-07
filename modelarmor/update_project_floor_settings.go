@@ -29,6 +29,31 @@ import (
 )
 
 // updateProjectFloorSettings updates the floor settings of a project.
+//
+// This method updates the floor settings of a project.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The updated floor settings.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedSettings, err := updateProjectFloorSettings(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedSettings)
 func updateProjectFloorSettings(w io.Writer, projectID, locationID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()
 

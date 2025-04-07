@@ -29,6 +29,33 @@ import (
 )
 
 // getModelArmorTemplate gets a Model Armor template.
+//
+// This method retrieves a Model Armor template.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	location string: The location of the template.
+//	templateID string: The ID of the template.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The retrieved Model Armor template.
+//	error: Any error that occurred during retrieval.
+//
+// Example:
+//
+//	template, err := getModelArmorTemplate(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
 func getModelArmorTemplate(w io.Writer, projectID, location, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

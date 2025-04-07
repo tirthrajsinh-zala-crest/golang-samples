@@ -28,7 +28,38 @@ import (
 	"google.golang.org/api/option"
 )
 
-// sanitizeModelResponseWithUserPrompt sanitizes a model response using the Model Armor API.
+// sanitizeModelResponseWithUserPrompt sanitizes a model response with a user prompt.
+//
+// This method sanitizes a model response based on a user prompt.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//	modelResponse string: The model response to sanitize.
+//	userPrompt string: The user prompt to use for sanitization.
+//
+// Returns:
+//
+//	*modelarmorpb.SanitizeModelResponseResponse: The sanitized model response.
+//	error: Any error that occurred during sanitization.
+//
+// Example:
+//
+//	sanitizedResponse, err := sanitizeModelResponseWithUserPrompt(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	    "model response",
+//	    "user prompt",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(sanitizedResponse)
 func sanitizeModelResponseWithUserPrompt(w io.Writer, projectID, locationID, templateID, modelResponse, userPrompt string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
 	ctx := context.Background()
 

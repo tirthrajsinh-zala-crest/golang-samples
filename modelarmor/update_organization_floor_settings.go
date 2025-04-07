@@ -29,6 +29,31 @@ import (
 )
 
 // updateOrganizationFloorSettings updates floor settings of an organization.
+//
+// This method updates the floor settings of an organization.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	organizationID string: The ID of the organization.
+//	locationID string: The ID of the location.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The updated floor settings.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedSettings, err := updateOrganizationFloorSettings(
+//	    os.Stdout,
+//	    "my-organization",
+//	    "my-location",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedSettings)
 func updateOrganizationFloorSettings(w io.Writer, organizationID, locationID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()
 

@@ -29,7 +29,39 @@ import (
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
-// updateModelArmorTemplateLabels updates the labels of the given model armor template.
+// updateModelArmorTemplateLabels updates the labels of a Model Armor template.
+//
+// This method updates the labels of a Model Armor template.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the project.
+//	locationID string: The ID of the location.
+//	templateID string: The ID of the template.
+//	labels map[string]string: The updated labels.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The updated template with new labels.
+//	error: Any error that occurred during update.
+//
+// Example:
+//
+//	updatedTemplate, err := updateModelArmorTemplateLabels(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-location",
+//	    "my-template",
+//	    map[string]string{
+//	        "key1": "value1",
+//	        "key2": "value2",
+//	    },
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(updatedTemplate)
 func updateModelArmorTemplateLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 
