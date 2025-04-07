@@ -70,7 +70,7 @@ func updateProjectFloorSettings(w io.Writer, projectID, locationID string) (*mod
 	}
 
 	// Print the updated config
-	fmt.Fprintf(w, "Updated Floor Setting: %+v\n", response)
+	fmt.Fprintf(w, "Updated project floor setting: %+v\n", response)
 
 	// [END modelarmor_update_project_floor_settings]
 

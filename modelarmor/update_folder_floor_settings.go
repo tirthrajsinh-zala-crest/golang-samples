@@ -76,7 +76,7 @@ func updateFolderFloorSettings(w io.Writer, folderID, locationID string) (*model
 	}
 
 	// Print the updated config
-	fmt.Fprintf(w, "Updated Floor Setting: %v\n", response)
+	fmt.Fprintf(w, "Updated folder floor setting: %v\n", response)
 
 	// [END modelarmor_update_folder_floor_settings]
 

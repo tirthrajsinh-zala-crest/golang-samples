@@ -51,7 +51,7 @@ func getFolderFloorSettings(w io.Writer, folderID string) (*modelarmorpb.FloorSe
 	}
 
 	// Print the retrieved floor setting using fmt.Fprintf with the io.Writer.
-	fmt.Fprintf(w, "Retrieved floor setting: %v\n", response)
+	fmt.Fprintf(w, "Retrieved folder floor setting: %v\n", response)
 
 	// [END modelarmor_get_folder_floor_settings]
 

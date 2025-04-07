@@ -91,7 +91,7 @@ func createModelArmorTemplateWithBasicSDP(w io.Writer, projectID, locationID, te
 	}
 
 	// Print the new template name using fmt.Fprintf with the io.Writer.
-	fmt.Fprintf(w, "Created template: %s\n", response.Name)
+	fmt.Fprintf(w, "Created Template with basic SDP: %s\n", response.Name)
 
 	// [END modelarmor_create_template_with_basic_sdp]
 

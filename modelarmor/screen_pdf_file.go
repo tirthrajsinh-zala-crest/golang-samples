@@ -63,7 +63,7 @@ func screenPDFFile(w io.Writer, projectID, locationID, templateID, pdfContentBas
 	}
 
 	// Sanitization Result.
-	fmt.Fprintf(w, "Sanitization Result: %v\n", response)
+	fmt.Fprintf(w, "PDF screening sanitization result: %v\n", response)
 
 	// [END modelarmor_screen_pdf_file]
 

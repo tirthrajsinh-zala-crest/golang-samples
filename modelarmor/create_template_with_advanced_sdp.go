@@ -90,7 +90,7 @@ func createModelArmorTemplateWithAdvancedSDP(w io.Writer, projectID, locationID,
 	}
 
 	// Print the new template name using fmt.Fprint with the io.Writer.
-	fmt.Fprintf(w, "Created template: %s\n", response.Name)
+	fmt.Fprintf(w, "Created Template with advanced SDP: %s\n", response.Name)
 
 	// [END modelarmor_create_template_with_advanced_sdp]
 

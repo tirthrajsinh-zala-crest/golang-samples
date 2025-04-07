@@ -50,7 +50,7 @@ func getOrganizationFloorSettings(w io.Writer, organizationID string) (*modelarm
 	}
 
 	// Print the retrieved floor setting using fmt.Fprintf with the io.Writer.
-	fmt.Fprintf(w, "Retrieved floor setting: %v\n", response)
+	fmt.Fprintf(w, "Retrieved org floor setting: %v\n", response)
 
 	// [END modelarmor_get_organization_floor_settings]
 

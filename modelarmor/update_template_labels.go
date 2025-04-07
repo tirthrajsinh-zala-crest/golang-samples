@@ -65,7 +65,7 @@ func updateModelArmorTemplateLabels(w io.Writer, projectID, locationID, template
 		return nil, fmt.Errorf("failed to update template: %v", err)
 	}
 
-	fmt.Fprintf(w, "Updated Model Armor Template: %s\n", response.Name)
+	fmt.Fprintf(w, "Updated Model Armor Template Labels: %s\n", response.Name)
 
 	// [END modelarmor_update_template_with_labels]
 

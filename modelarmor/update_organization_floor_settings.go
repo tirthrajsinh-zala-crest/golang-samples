@@ -70,7 +70,7 @@ func updateOrganizationFloorSettings(w io.Writer, organizationID, locationID str
 	}
 
 	// Print the updated config
-	fmt.Fprintf(w, "Updated Floor Setting: %+v\n", response)
+	fmt.Fprintf(w, "Updated org floor setting: %+v\n", response)
 
 	// [END modelarmor_update_organization_floor_settings]
 
