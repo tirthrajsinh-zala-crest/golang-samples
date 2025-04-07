@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_update_folder_floor_settings]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // updateFolderFloorSettings updates floor settings of a folder.
 func updateFolderFloorSettings(w io.Writer, folderID, locationID string) (*modelarmorpb.FloorSetting, error) {
-	// [START modelarmor_update_folder_floor_settings]
 	ctx := context.Background()
 
 	// TODO(Developer): Uncomment and set these variables.

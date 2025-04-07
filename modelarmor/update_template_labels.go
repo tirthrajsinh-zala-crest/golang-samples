@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_update_template_with_labels]
+
 import (
 	"context"
 	"fmt"
@@ -29,7 +31,6 @@ import (
 
 // updateModelArmorTemplateLabels updates the labels of the given model armor template.
 func updateModelArmorTemplateLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_update_template_with_labels]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_sanitize_user_prompt]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // sanitizeUserPrompt sanitizes a user prompt using the Model Armor API.
 func sanitizeUserPrompt(w io.Writer, projectID, locationID, templateID, userPrompt string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
-	// [START modelarmor_sanitize_user_prompt]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

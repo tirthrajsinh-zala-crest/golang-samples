@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_sanitize_model_response]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // sanitizeModelResponse sanitizes a model response using the Model Armor API.
 func sanitizeModelResponse(w io.Writer, projectID, locationID, templateID, modelResponse string) (*modelarmorpb.SanitizeModelResponseResponse, error) {
-	// [START modelarmor_sanitize_model_response]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_screen_pdf_file]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // screenPDFFile sanitizes/screens PDF text content using the Model Armor API.
 func screenPDFFile(w io.Writer, projectID, locationID, templateID, pdfContentBase64 string) (*modelarmorpb.SanitizeUserPromptResponse, error) {
-	// [START modelarmor_screen_pdf_file]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

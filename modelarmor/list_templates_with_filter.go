@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_list_templates_with_filter]
+
 import (
 	"context"
 	"fmt"
@@ -30,7 +32,6 @@ import (
 
 // listModelArmorTemplatesWithFilter lists all model armor templates in the specified project and location with a filter.
 func listModelArmorTemplatesWithFilter(w io.Writer, projectID, locationID, templateID string) ([]string, error) {
-	// [START modelarmor_list_templates_with_filter]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

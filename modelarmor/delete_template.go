@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_delete_template]
+
 import (
 	"context"
 	"fmt"
@@ -27,8 +29,37 @@ import (
 )
 
 // deleteModelArmorTemplate deletes a Model Armor template.
+//
+// This method deletes a Model Armor template with the provided ID.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to delete.
+//
+// Returns:
+//
+//	error: Any error that occurred during template deletion.
+//
+// Example:
+//
+//	err := deleteModelArmorTemplate(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//
+// Note:
+//
+//	This method permanently deletes the template and all associated data.
+//	Use with caution.
 func deleteModelArmorTemplate(w io.Writer, projectID, location, templateID string) error {
-	// [START modelarmor_delete_template]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

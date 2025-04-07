@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_update_organization_floor_settings]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // updateOrganizationFloorSettings updates floor settings of an organization.
 func updateOrganizationFloorSettings(w io.Writer, organizationID, locationID string) (*modelarmorpb.FloorSetting, error) {
-	// [START modelarmor_update_organization_floor_settings]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

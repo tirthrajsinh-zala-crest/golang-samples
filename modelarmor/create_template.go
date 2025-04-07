@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_create_template]
+
 import (
 	"context"
 	"fmt"
@@ -27,8 +29,40 @@ import (
 )
 
 // createModelArmorTemplate creates a new Model Armor template.
+//
+// This method creates a new Model Armor template with the provided settings.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to create.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The created template.
+//	error: Any error that occurred during template creation.
+//
+// Example:
+//
+//	template, err := createModelArmorTemplate(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
+//
+// Note:
+//
+//	This method creates a template with default settings. You can customize the template
+//	by using other methods, such as createModelArmorTemplateWithAdvancedSDP or
+//	createModelArmorTemplateWithLabels.
 func createModelArmorTemplate(w io.Writer, projectID, location, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_create_template]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

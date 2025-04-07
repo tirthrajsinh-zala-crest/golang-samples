@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_get_organization_floor_settings]
+
 import (
 	"context"
 	"fmt"
@@ -26,8 +28,36 @@ import (
 )
 
 // getOrganizationFloorSettings gets details of a single floor setting of an organization.
+//
+// This method retrieves the details of a single floor setting of an organization.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	organizationID string: The ID of the organization.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The retrieved floor setting.
+//	error: Any error that occurred during retrieval.
+//
+// Example:
+//
+//	floorSetting, err := getOrganizationFloorSettings(
+//	    os.Stdout,
+//	    "my-organization",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(floorSetting)
+//
+// Note:
+//
+//	This method returns a single floor setting. If you need to retrieve multiple floor settings,
+//	use a different method (e.g. listOrganizationFloorSettings) instead.
+
 func getOrganizationFloorSettings(w io.Writer, organizationID string) (*modelarmorpb.FloorSetting, error) {
-	// [START modelarmor_get_organization_floor_settings]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

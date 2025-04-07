@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_get_folder_floor_settings]
+
 import (
 	"context"
 	"fmt"
@@ -26,8 +28,39 @@ import (
 )
 
 // getFolderFloorSettings gets details of a single floor setting of a folder.
+//
+// This method retrieves the details of a single floor setting of a folder.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	folderID string: The ID of the folder.
+//	floorSettingID string: The ID of the floor setting to retrieve.
+//
+// Returns:
+//
+//	*modelarmorpb.FloorSetting: The retrieved floor setting.
+//	error: Any error that occurred during retrieval.
+//
+// Example:
+//
+//	floorSetting, err := getFolderFloorSettings(
+//	    os.Stdout,
+//	    "my-project",
+//	    "my-folder",
+//	    "my-floor-setting",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(floorSetting)
+//
+// Note:
+//
+//	This method returns a single floor setting. If you need to retrieve multiple floor settings,
+//	use the listFolderFloorSettings method instead.
 func getFolderFloorSettings(w io.Writer, folderID string) (*modelarmorpb.FloorSetting, error) {
-	// [START modelarmor_get_folder_floor_settings]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

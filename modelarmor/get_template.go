@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_get_template]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // getModelArmorTemplate gets a Model Armor template.
 func getModelArmorTemplate(w io.Writer, projectID, location, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_get_template]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

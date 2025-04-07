@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_create_template_with_labels]
+
 import (
 	"context"
 	"fmt"
@@ -26,9 +28,46 @@ import (
 	"google.golang.org/api/option"
 )
 
-// createModelArmorTemplateWithLabels creates a new Model Armor template with labels.
+// createModelArmorTemplateWithLabels creates a new Model Armor template with custom labels.
+//
+// This method creates a new Model Armor template with custom labels.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to create.
+//	labels map[string]string: A map of custom labels to apply to the template.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The created template.
+//	error: Any error that occurred during template creation.
+//
+// Example:
+//
+//	labels := map[string]string{
+//	    "env": "dev",
+//	    "team": "security",
+//	}
+//	template, err := createModelArmorTemplateWithLabels(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	    labels,
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
+//
+// Note:
+//
+//	Custom labels can be used to organize and filter templates.
+//	Label keys must be strings, and label values must be strings or empty strings.
 func createModelArmorTemplateWithLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_create_template_with_labels]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

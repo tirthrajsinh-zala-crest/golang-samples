@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_create_template_with_basic_sdp]
+
 import (
 	"context"
 	"fmt"
@@ -26,9 +28,40 @@ import (
 	"google.golang.org/api/option"
 )
 
-// createModelArmorTemplateWithBasicSDP creates a new Model Armor template with basic SDP settings enabled.
+// createModelArmorTemplateWithBasicSDP creates a new Model Armor template with basic SDP settings.
+//
+// This method creates a new Model Armor template with basic SDP settings.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to create.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The created template.
+//	error: Any error that occurred during template creation.
+//
+// Example:
+//
+//	template, err := createModelArmorTemplateWithBasicSDP(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
+//
+// Note:
+//
+//	This method creates a template with basic SDP settings, which includes
+//	default settings for inspect and deidentify templates.
 func createModelArmorTemplateWithBasicSDP(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_create_template_with_basic_sdp]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

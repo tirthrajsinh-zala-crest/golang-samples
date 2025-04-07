@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_create_template_with_metadata]
+
 import (
 	"context"
 	"fmt"
@@ -27,8 +29,45 @@ import (
 )
 
 // createModelArmorTemplateWithMetadata creates a new Model Armor template with template metadata.
+//
+// This method creates a new Model Armor template with template metadata.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to create.
+//	metadata *modelarmorpb.TemplateMetadata: The template metadata to apply.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The created template.
+//	error: Any error that occurred during template creation.
+//
+// Example:
+//
+//	metadata := &modelarmorpb.TemplateMetadata{
+//	    Description: "My template",
+//	    Version:     "1.0",
+//	}
+//	template, err := createModelArmorTemplateWithMetadata(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	    metadata,
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
+//
+// Note:
+//
+//	Template metadata can be used to provide additional information about the template.
+//	The metadata can include a description, version, and other attributes.
 func createModelArmorTemplateWithMetadata(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_create_template_with_metadata]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

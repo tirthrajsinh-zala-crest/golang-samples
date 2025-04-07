@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_create_template_with_advanced_sdp]
+
 import (
 	"context"
 	"fmt"
@@ -26,9 +28,39 @@ import (
 	"google.golang.org/api/option"
 )
 
-// createModelArmorTemplateWithAdvancedSDP creates a new Model Armor template with advanced SDP settings enabled.
+// createModelArmorTemplateWithAdvancedSDP creates a new Model Armor template with advanced SDP settings.
+//
+// This method creates a new Model Armor template with advanced SDP settings, including inspect and deidentify templates.
+//
+// Args:
+//
+//	w io.Writer: The writer to use for logging.
+//	projectID string: The ID of the Google Cloud project.
+//	locationID string: The ID of the Google Cloud location.
+//	templateID string: The ID of the template to create.
+//	inspectTemplate string: The ID of the inspect template to use.
+//	deidentifyTemplate string: The ID of the deidentify template to use.
+//
+// Returns:
+//
+//	*modelarmorpb.Template: The created template.
+//	error: Any error that occurred during template creation.
+//
+// Example:
+//
+//	template, err := createModelArmorTemplateWithAdvancedSDP(
+//	    os.Stdout,
+//	    "my-project",
+//	    "us-central1",
+//	    "my-template",
+//	    "my-inspect-template",
+//	    "my-deidentify-template",
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(template)
 func createModelArmorTemplateWithAdvancedSDP(w io.Writer, projectID, locationID, templateID, inspectTemplate, deidentifyTemplate string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_create_template_with_advanced_sdp]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_get_project_floor_settings]
+
 import (
 	"context"
 	"fmt"
@@ -27,7 +29,6 @@ import (
 
 // getProjectFloorSettings gets details of a single floor setting of a project.
 func getProjectFloorSettings(w io.Writer, projectID string) (*modelarmorpb.FloorSetting, error) {
-	// [START modelarmor_get_project_floor_settings]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

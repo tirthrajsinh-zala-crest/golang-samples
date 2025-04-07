@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_update_template_with_mask_configuration]
+
 import (
 	"context"
 	"fmt"
@@ -29,7 +31,6 @@ import (
 
 // updateModelArmorTemplateWithMaskConfiguration updates an existing model armor template.
 func updateModelArmorTemplateWithMaskConfiguration(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_update_template_with_mask_configuration]
 	ctx := context.Background()
 
 	// Create the Model Armor client.

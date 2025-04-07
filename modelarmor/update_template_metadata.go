@@ -16,6 +16,8 @@
 
 package modelarmor
 
+// [START modelarmor_update_template_metadata]
+
 import (
 	"context"
 	"fmt"
@@ -28,7 +30,6 @@ import (
 
 // updateModelArmorTemplateMetadata updates an existing model armor template.
 func updateModelArmorTemplateMetadata(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
-	// [START modelarmor_update_template_metadata]
 	ctx := context.Background()
 
 	// Create the Model Armor client.
