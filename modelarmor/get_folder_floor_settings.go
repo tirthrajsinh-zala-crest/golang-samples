@@ -55,11 +55,6 @@ import (
 //	    log.Fatal(err)
 //	}
 //	fmt.Println(floorSetting)
-//
-// Note:
-//
-//	This method returns a single floor setting. If you need to retrieve multiple floor settings,
-//	use the listFolderFloorSettings method instead.
 func getFolderFloorSettings(w io.Writer, folderID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()
 

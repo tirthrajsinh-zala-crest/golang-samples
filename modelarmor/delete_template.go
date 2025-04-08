@@ -54,11 +54,6 @@ import (
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
-//
-// Note:
-//
-//	This method permanently deletes the template and all associated data.
-//	Use with caution.
 func deleteModelArmorTemplate(w io.Writer, projectID, location, templateID string) error {
 	ctx := context.Background()
 

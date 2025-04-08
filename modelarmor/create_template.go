@@ -56,12 +56,6 @@ import (
 //	    log.Fatal(err)
 //	}
 //	fmt.Println(template)
-//
-// Note:
-//
-//	This method creates a template with default settings. You can customize the template
-//	by using other methods, such as createModelArmorTemplateWithAdvancedSDP or
-//	createModelArmorTemplateWithLabels.
 func createModelArmorTemplate(w io.Writer, projectID, location, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

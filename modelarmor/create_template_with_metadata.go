@@ -62,11 +62,6 @@ import (
 //	    log.Fatal(err)
 //	}
 //	fmt.Println(template)
-//
-// Note:
-//
-//	Template metadata can be used to provide additional information about the template.
-//	The metadata can include a description, version, and other attributes.
 func createModelArmorTemplateWithMetadata(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

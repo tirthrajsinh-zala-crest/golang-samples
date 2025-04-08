@@ -56,11 +56,6 @@ import (
 //	    log.Fatal(err)
 //	}
 //	fmt.Println(template)
-//
-// Note:
-//
-//	This method creates a template with basic SDP settings, which includes
-//	default settings for inspect and deidentify templates.
 func createModelArmorTemplateWithBasicSDP(w io.Writer, projectID, locationID, templateID string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 

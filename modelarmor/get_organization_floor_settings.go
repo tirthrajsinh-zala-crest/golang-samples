@@ -52,10 +52,6 @@ import (
 //	}
 //	fmt.Println(floorSetting)
 //
-// Note:
-//
-//	This method returns a single floor setting. If you need to retrieve multiple floor settings,
-//	use a different method (e.g. listOrganizationFloorSettings) instead.
 
 func getOrganizationFloorSettings(w io.Writer, organizationID string) (*modelarmorpb.FloorSetting, error) {
 	ctx := context.Background()

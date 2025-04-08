@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,18 +27,18 @@ import (
 )
 
 func main() {
-	projectID := "ma-crest-data-test-2"
+	projectID := "your-project-id"
 	locationID := "us-central1"
 	templateID := "go-template"
 
 	ctx := context.Background()
+	// Initialize Client
 	client, err := modelarmor.NewClient(ctx, option.WithEndpoint(fmt.Sprintf("modelarmor.%s.rep.googleapis.com:443", locationID)))
-	fmt.Println("Initialize client")
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
 	defer client.Close()
-	fmt.Println("Setup Template")
+	// Setup Template
 	parent := fmt.Sprintf("projects/%s/locations/%s", projectID, locationID)
 
 	template := &modelarmorpb.Template{
@@ -108,6 +108,7 @@ func main() {
 		},
 	}
 
+	// Sanitize Model Response
 	modelSanitizeResp, err := client.SanitizeModelResponse(ctx, modelSanitizeReq)
 	if err != nil {
 		log.Fatalf("Failed to sanitize model response: %v", err)

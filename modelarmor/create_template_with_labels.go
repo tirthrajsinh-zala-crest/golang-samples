@@ -62,11 +62,6 @@ import (
 //	    log.Fatal(err)
 //	}
 //	fmt.Println(template)
-//
-// Note:
-//
-//	Custom labels can be used to organize and filter templates.
-//	Label keys must be strings, and label values must be strings or empty strings.
 func createModelArmorTemplateWithLabels(w io.Writer, projectID, locationID, templateID string, labels map[string]string) (*modelarmorpb.Template, error) {
 	ctx := context.Background()
 
