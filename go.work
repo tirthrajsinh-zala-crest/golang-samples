@@ -105,6 +105,7 @@ use (
 	./managedkafka
 	./media
 	./memorystore
+	./modelarmor
 	./monitoring
 	./opentelemetry/instrumentation/app
 	./opentelemetry/trace
